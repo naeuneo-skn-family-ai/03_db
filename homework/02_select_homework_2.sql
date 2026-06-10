@@ -27,20 +27,23 @@ limit 3;
  단, 급여를 기준으로 내림차순 출력하세요.
  */
 
-# 조인 쓰는 버전
-
 select
-    JOB_NAME,
-    SALARY,
-    EMP_ID,
-    EMAIL,
-    PHONE,
-    HIRE_DATE
-from employee e
-join job j on e.JOB_CODE = j.JOB_CODE
+    e.emp_name as 직원명,
+    j.job_name as 직급명,
+    e.SALARY as 급여,
+    e.emp_id as 사원번호,
+    e.email as 이메일,
+    e.phone as 전화번호,
+    e.HIRE_DATE  as 입사일
+from
+    employee e
+join
+    job j
+on
+    e.JOB_CODE = j.JOB_CODE
 where
-    e.ENT_YN = 'N'
+    j.job_name = '대리' # 대리
 and
-    j.JOB_CODE = 'J6'
+    e.ENT_YN = 'N' # 재직중
 order by
-    SALARY desc;
+    e.salary desc; # 급여 기준 내림차순
