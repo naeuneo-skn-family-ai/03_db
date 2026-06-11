@@ -280,12 +280,14 @@ on m.category_code = c.category_code;
    from 변수명
  */
 
-with category_name as (select
-    menu_code, menu_name, category_name
+with menu_view as (select
+    menu_code as 메뉴코드,
+    menu_name as 메뉴명,
+    category_name as 카테고리명
 from tbl_menu m
 join
     tbl_category c
 on m.category_code = c.category_code)
 select *
-from category_name
-where category_name = '한식';
+from menu_view
+where 카테고리명 = '한식';
